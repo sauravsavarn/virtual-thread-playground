@@ -101,13 +101,16 @@ public class Client {
     }
 
     /**
+     * Read md (docs/HTTP Get request using Java HTTP Client vs openStream _ Legacy vs. Modern .md)
+     * to understand the difference between HttpClient v/s openStream() methods used below
+     * to read/fetch HTTP Get request to read an end-point.
      *
      * @param url
      * @return
      */
     public static Object readAPI(String url) {
         logger.info("reading API URL: {}", url);
-        try (var stream = URI.create(url).toURL().openStream()) { //new URL(url).openStream()) {
+        try (var stream = URI.create(url).toURL().openStream()) { //new URL(url).openStream()) { //this will initiate a TCP connection, through which we will be sending HTTP Request, and the response we will receive as InputStream. Also since InputStream should be closed once read that is why we are using try-with-resources here to close InputStream automatically.
             return new String(stream.readAllBytes());
         } catch (IOException e) {
             //throw new RuntimeException(e);
