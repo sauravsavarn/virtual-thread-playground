@@ -3,6 +3,7 @@ package in.playground.externalservice;
 import com.google.gson.*;
 import in.playground.model.Employee;
 import in.playground.util.CommonUtils;
+import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,10 +19,12 @@ import java.util.stream.StreamSupport;
 /**
  * this class takes care for all CRUD HTTP Method call to mockapi.io projects 'EmployeeApp'.
  */
-public class Client {
-    private static final Logger logger = LoggerFactory.getLogger(Client.class);
+public class PlaygroundClient {
+    private static final Logger logger = LoggerFactory.getLogger(PlaygroundClient.class);
+    @Getter
     private static final String BASE_URL = "https://692ed47e91e00bafccd58716.mockapi.io/api/v1/";
     private static final HttpClient httpClient = HttpClient.newHttpClient(); // Returns a new HttpClient with default settings.
+
 
     static void main(String[] args) throws InterruptedException, IOException {
         /* ************************************************* */
@@ -67,7 +70,6 @@ public class Client {
 
 
     }
-
 
     /**
      * for pretty-print we have replaced jsonObject with JsonElement as
